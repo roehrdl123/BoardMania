@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_games"
+        android:title="Games"
+        android:icon="@drawable/ic_gamepad_black_24dp" />
+
+    <item
+        android:id="@+id/menu_players"
+        android:title="Players"
+        android:icon="@drawable/ic_accessibility_black_24dp" />
+
+    <item
+        android:id="@+id/menu_History"
+        android:title="History"
+        android:icon="@drawable/ic_history_black_24dp" />
+
+</menu>
