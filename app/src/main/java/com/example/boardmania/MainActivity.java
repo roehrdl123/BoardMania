@@ -68,20 +68,6 @@ public class MainActivity extends AppCompatActivity
 
         realm.copyToRealmOrUpdate(p4);
 
-        HistoryEntry historyEntry = new HistoryEntry();
-        historyEntry.setGame(gametype);
-        historyEntry.setP1(p1);
-        historyEntry.setP2(p2);
-
-        realm.copyToRealmOrUpdate(historyEntry);
-
-        HistoryEntry historyEntry1 = new HistoryEntry();
-        historyEntry1.setGame(g);
-        historyEntry1.setP1(p1);
-        historyEntry1.setP2(p2);
-
-        realm.copyToRealmOrUpdate(historyEntry1);
-
         realm.commitTransaction();
 
 

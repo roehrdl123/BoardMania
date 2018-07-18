@@ -2,8 +2,14 @@ package com.example.boardmania.TicTacToeGame;
 
 import android.os.Bundle;
 
+import com.example.boardmania.Data.Game;
+import com.example.boardmania.Data.HistoryEntry;
+import com.example.boardmania.Data.Player;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
 
 public class TicTacToeModel
 {
@@ -15,6 +21,8 @@ public class TicTacToeModel
     private List<String> fields;
     String winner;
     boolean end;
+    HistoryEntry myHistory;
+    Realm r;
 
     public void initArray()
     {
@@ -23,6 +31,9 @@ public class TicTacToeModel
         {
             fields.add("");
         }
+        myHistory = new HistoryEntry();
+
+        r = Realm.getDefaultInstance();
     }
 
     public List<String> getArray()
@@ -69,10 +80,14 @@ public class TicTacToeModel
             winner = player1sTurn ? player1 : player2;
             if(player1sTurn)
             {
+
+                myHistory.setWinner(player1);
                 player1wins++;
             }
             else
             {
+
+                myHistory.setWinner(player2);
                 player2wins++;
             }
         }
@@ -81,6 +96,7 @@ public class TicTacToeModel
         {
             winner = "draw";
             end = true;
+            myHistory.setWinner("draw");
         }
         if(end)
         {
@@ -94,6 +110,11 @@ public class TicTacToeModel
                 player1sTurn = true;
             }
             player1Beginner = !player1Beginner;
+
+
+            r.beginTransaction();
+            r.copyToRealm(myHistory);
+            r.commitTransaction();
         }
 
     }
@@ -105,6 +126,8 @@ public class TicTacToeModel
         {
             fields.set(i,"");
         }
+        int id = r.where(HistoryEntry.class).count() == 0 ? 1 : r.where(HistoryEntry.class).findAll().last().getId()+1;
+        myHistory.setId(id);
     }
 
     public String getWinner()
@@ -123,6 +146,24 @@ public class TicTacToeModel
         {
             player1 = bundle.getString("namePlayer1");
             player2 = bundle.getString("namePlayer2");
+
+
+            int id = r.where(HistoryEntry.class).count() == 0 ? 1 : r.where(HistoryEntry.class).findAll().last().getId()+1;
+            myHistory.setId(id);
+
+            for (Player p:r.where(Player.class).findAll())
+            {
+                if(p.getName().equals(player1))
+                {
+                    myHistory.setP1(p);
+                }
+                else if(p.getName().equals(player2))
+                {
+                    myHistory.setP2(p);
+                }
+            }
+
+            myHistory.setGame(r.where(Game.class).beginsWith("name","Tic").findFirst());
         }
     }
 

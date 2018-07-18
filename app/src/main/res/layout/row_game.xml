@@ -9,7 +9,7 @@
         android:id="@+id/icon_List_Games"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_margin="16dp"
         android:onClick="onClick"/>
 
     <TextView
