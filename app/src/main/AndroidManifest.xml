@@ -21,7 +21,9 @@
             android:name=".TicTacToeGame.TicTacToeActivity"
             android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".PlayerChooser.PlayerChooserActivity">
+        <activity
+            android:name=".PlayerChooser.PlayerChooserActivity"
+            android:parentActivityName=".MainActivity">
         </activity>
     </application>
 

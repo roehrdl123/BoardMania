@@ -11,7 +11,7 @@ public class Player extends RealmObject
     @PrimaryKey
     private String name;
 
-    private String colorHex;
+    private Integer avatarIcon;
     private boolean type;
 
     public String getName()
@@ -24,14 +24,14 @@ public class Player extends RealmObject
         this.name = name;
     }
 
-    public String getColorHex()
+    public Integer getAvatarIcon()
     {
-        return colorHex;
+        return avatarIcon;
     }
 
-    public void setColorHex(String colorHex)
+    public void setAvatarIcon(Integer avatarIcon)
     {
-        this.colorHex = colorHex;
+        this.avatarIcon = avatarIcon;
     }
 
     public boolean isType()

@@ -50,21 +50,25 @@ public class MainActivity extends AppCompatActivity
 
         Player p1 = new Player();
         p1.setName("Hans");
+        p1.setAvatarIcon(R.drawable.avatarboy);
 
         realm.copyToRealmOrUpdate(p1);
 
         Player p2 = new Player();
         p2.setName("Alfons");
+        p2.setAvatarIcon(R.drawable.avatarbusinessman);
 
         realm.copyToRealmOrUpdate(p2);
 
         Player p3 = new Player();
         p3.setName("Dagobert");
+        p3.setAvatarIcon(R.drawable.avatarcoder);
 
         realm.copyToRealmOrUpdate(p3);
 
         Player p4 = new Player();
-        p4.setName("Hans-Peter");
+        p4.setName("Matilde");
+        p4.setAvatarIcon(R.drawable.avatarteacher);
 
         realm.copyToRealmOrUpdate(p4);
 

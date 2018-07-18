@@ -1,4 +1,4 @@
-package com.example.boardmania.ui;
+package com.example.boardmania.PlayerChooser;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,27 +8,28 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.boardmania.Data.Game;
 import com.example.boardmania.Data.Player;
 import com.example.boardmania.R;
+import com.example.boardmania.ui.HistoryRecyclerViewAdapter;
 
 import java.util.List;
 
-
-public class PlayersRecyclerViewAdapter extends RecyclerView.Adapter<PlayersRecyclerViewAdapter.ViewHolder>
+public class PlayChooserAdapter extends RecyclerView.Adapter<PlayChooserAdapter.ViewHolder>
 {
 
     private final List<Player> mValues;
 
-    public PlayersRecyclerViewAdapter(List<Player> items)
+    public PlayChooserAdapter(List<Player> players)
     {
-        mValues = items;
+        mValues = players;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_view_players, parent, false);
-        return new ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rowview, parent, false);
+        return new PlayChooserAdapter.ViewHolder(view);
     }
 
     @Override
@@ -49,15 +50,15 @@ public class PlayersRecyclerViewAdapter extends RecyclerView.Adapter<PlayersRecy
     {
         public final View mView;
         public final ImageView mIconView;
-        public final TextView mContentView;
+        public final CheckedTextView mContentView;
         public Player mItem;
 
         private ViewHolder(View view)
         {
             super(view);
             mView = view;
-            mIconView = (ImageView) view.findViewById(R.id.playerAvatarMenu);
-            mContentView = (TextView) view.findViewById(R.id.Player_nameMenu);
+            mIconView = (ImageView) view.findViewById(R.id.playerAvatar);
+            mContentView = (CheckedTextView) view.findViewById(R.id.Player_name);
         }
 
         @Override

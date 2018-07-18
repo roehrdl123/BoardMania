@@ -11,4 +11,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.PlayersFragment"
-    tools:listitem="@layout/fragment_player"/>
+    tools:listitem="@layout/row_view_players"/>

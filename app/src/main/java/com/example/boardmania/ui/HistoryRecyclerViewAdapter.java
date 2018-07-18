@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.boardmania.Data.HistoryEntry;
 import com.example.boardmania.R;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -20,7 +22,11 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
     public HistoryRecyclerViewAdapter(List<HistoryEntry> items)
     {
-        mValues = items;
+        mValues = new ArrayList<>();
+        for (HistoryEntry h: items)
+        {
+            mValues.add(0,h);
+        }
     }
 
     @Override
