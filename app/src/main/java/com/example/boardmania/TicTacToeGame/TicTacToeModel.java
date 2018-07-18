@@ -11,6 +11,7 @@ public class TicTacToeModel
     private boolean playable = true;
     private boolean player1Beginner = true;
     private String player1, player2;
+    private int player1wins = 0, player2wins = 0;
     private List<String> fields;
     String winner;
     boolean end;
@@ -66,6 +67,14 @@ public class TicTacToeModel
         {
             end = true;
             winner = player1sTurn ? player1 : player2;
+            if(player1sTurn)
+            {
+                player1wins++;
+            }
+            else
+            {
+                player2wins++;
+            }
         }
 
         else if(!fields.contains(""))
@@ -117,4 +126,23 @@ public class TicTacToeModel
         }
     }
 
+    public String getPlayer1Name()
+    {
+        return player1;
+    }
+
+    public String getPlayer2Name()
+    {
+        return player2;
+    }
+
+    public int getPlayer1wins()
+    {
+        return player1wins;
+    }
+
+    public int getPlayer2wins()
+    {
+        return player2wins;
+    }
 }

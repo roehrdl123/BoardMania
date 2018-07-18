@@ -78,6 +78,7 @@ public class TicTacToeActivity extends AppCompatActivity
                     {
                         String result = model.getWinner().equals("draw") ? model.getWinner() : model.getWinner()+" won";
                         Toast.makeText(TicTacToeActivity.this, result, Toast.LENGTH_SHORT).show();
+                        updateTextViews();
                     }
                     else
                     {
@@ -91,11 +92,23 @@ public class TicTacToeActivity extends AppCompatActivity
                 }
             }
         });
+
+        updateTextViews();
     }
 
     public void restart(View view)
     {
         model.restart();
         adapter.notifyDataSetChanged();
+    }
+
+    private void updateTextViews()
+    {
+        String s1 = String.format(" %-15s | Matches won: %2d",model.getPlayer1Name(),model.getPlayer1wins());
+        TextView p1TextView = (TextView) findViewById(R.id.Player1_TextView);
+        p1TextView.setText(s1);
+        String s2 = String.format(" %-15s | Matches won: %2d",model.getPlayer2Name(),model.getPlayer2wins());
+        TextView p2TextView = (TextView) findViewById(R.id.Player2_TextView);
+        p2TextView.setText(s2);
     }
 }
