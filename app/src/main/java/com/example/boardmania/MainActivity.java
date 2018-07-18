@@ -12,6 +12,7 @@ import android.view.View;
 import com.example.boardmania.Data.Game;
 import com.example.boardmania.Data.HistoryEntry;
 import com.example.boardmania.Data.Player;
+import com.example.boardmania.PlayerChooser.PlayerChooserActivity;
 import com.example.boardmania.TicTacToeGame.TicTacToeActivity;
 import com.example.boardmania.ui.GamesFragment;
 import com.example.boardmania.ui.HistoryFragment;
@@ -56,6 +57,16 @@ public class MainActivity extends AppCompatActivity
         p2.setName("Alfons");
 
         realm.copyToRealmOrUpdate(p2);
+
+        Player p3 = new Player();
+        p3.setName("Dagobert");
+
+        realm.copyToRealmOrUpdate(p3);
+
+        Player p4 = new Player();
+        p4.setName("Hans-Peter");
+
+        realm.copyToRealmOrUpdate(p4);
 
         HistoryEntry historyEntry = new HistoryEntry();
         historyEntry.setGame(gametype);
@@ -105,9 +116,7 @@ public class MainActivity extends AppCompatActivity
 
     public void onClick(View view)
     {
-        Realm realm = Realm.getDefaultInstance();
-        Intent intent = new Intent(this, TicTacToeActivity.class);
-        //intent.putExtra(realm.where(Player.class).beginsWith("name","Hans"));
+        Intent intent = new Intent(this, PlayerChooserActivity.class);
         startActivity(intent);
     }
 }

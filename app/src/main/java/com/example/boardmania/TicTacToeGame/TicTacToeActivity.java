@@ -26,6 +26,8 @@ public class TicTacToeActivity extends AppCompatActivity
     private Activity mActivity;
     private ArrayAdapter<String> adapter;
 
+    String namePlayer1, namePlayer2;
+
     private CoordinatorLayout mCLayout;
 
     @Override
@@ -36,11 +38,14 @@ public class TicTacToeActivity extends AppCompatActivity
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
 
+        Bundle bundle = getIntent().getExtras();
+
 
         model = new TicTacToeModel();
         model.initArray();
 
-        /////von da
+        model.setNames(bundle);
+
         mContext = getApplicationContext();
         mActivity = TicTacToeActivity.this;
 
@@ -61,7 +66,6 @@ public class TicTacToeActivity extends AppCompatActivity
             }
         };
         gridview.setAdapter(adapter);
-        //////bis da
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {

@@ -17,8 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TicTacToeGame.TicTacToeActivity"
-                  android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".TicTacToeGame.TicTacToeActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity android:name=".PlayerChooser.PlayerChooserActivity">
         </activity>
     </application>
 

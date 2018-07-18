@@ -1,5 +1,7 @@
 package com.example.boardmania.TicTacToeGame;
 
+import android.os.Bundle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class TicTacToeModel
     private boolean player1sTurn = true;
     private boolean playable = true;
     private boolean player1Beginner = true;
-    private String player1 = "Player 1", player2 = "Player 2";
+    private String player1, player2;
     private List<String> fields;
     String winner;
     boolean end;
@@ -104,6 +106,15 @@ public class TicTacToeModel
     public boolean isFinished()
     {
         return end;
+    }
+
+    public void setNames(Bundle bundle)
+    {
+        if (bundle != null)
+        {
+            player1 = bundle.getString("namePlayer1");
+            player2 = bundle.getString("namePlayer2");
+        }
     }
 
 }
