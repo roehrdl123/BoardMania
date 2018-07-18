@@ -145,4 +145,9 @@ public class TicTacToeModel
     {
         return player2wins;
     }
+
+    public boolean isPlayable()
+    {
+        return playable;
+    }
 }

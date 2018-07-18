@@ -25,6 +25,7 @@ public class TicTacToeActivity extends AppCompatActivity
     private Context mContext;
     private Activity mActivity;
     private ArrayAdapter<String> adapter;
+    TextView p1TextView, p2TextView, p1PointView, p2PointView;
 
     String namePlayer1, namePlayer2;
 
@@ -73,6 +74,10 @@ public class TicTacToeActivity extends AppCompatActivity
             {
                 try
                 {
+                    if(!model.isPlayable())
+                    {
+                        return;
+                    }
                     model.onClick(position);
                     if(model.isFinished())
                     {
@@ -93,6 +98,13 @@ public class TicTacToeActivity extends AppCompatActivity
             }
         });
 
+
+        p1TextView = (TextView) findViewById(R.id.Player1_TextView);
+        p2TextView = (TextView) findViewById(R.id.Player2_TextView);
+        p1PointView = (TextView) findViewById(R.id.Player1_PointsView);
+        p2PointView = (TextView) findViewById(R.id.Player2_PointsView);
+
+
         updateTextViews();
     }
 
@@ -104,11 +116,10 @@ public class TicTacToeActivity extends AppCompatActivity
 
     private void updateTextViews()
     {
-        String s1 = String.format(" %-15s | Matches won: %2d",model.getPlayer1Name(),model.getPlayer1wins());
-        TextView p1TextView = (TextView) findViewById(R.id.Player1_TextView);
-        p1TextView.setText(s1);
-        String s2 = String.format(" %-15s | Matches won: %2d",model.getPlayer2Name(),model.getPlayer2wins());
-        TextView p2TextView = (TextView) findViewById(R.id.Player2_TextView);
-        p2TextView.setText(s2);
+
+        p1TextView.setText(model.getPlayer1Name());
+        p1PointView.setText("Matches won: "+model.getPlayer1wins());
+        p2TextView.setText(model.getPlayer2Name());
+        p2PointView.setText("Matches won: "+model.getPlayer2wins());
     }
 }
