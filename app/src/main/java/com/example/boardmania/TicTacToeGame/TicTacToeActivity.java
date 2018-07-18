@@ -26,6 +26,7 @@ public class TicTacToeActivity extends AppCompatActivity
     private Activity mActivity;
     private ArrayAdapter<String> adapter;
     TextView p1TextView, p2TextView, p1PointView, p2PointView;
+    GridView gridview;
 
     String namePlayer1, namePlayer2;
 
@@ -37,7 +38,6 @@ public class TicTacToeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe);
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
 
         Bundle bundle = getIntent().getExtras();
 

@@ -50,7 +50,7 @@ public class PlayChooserAdapter extends RecyclerView.Adapter<PlayChooserAdapter.
     {
         public final View mView;
         public final ImageView mIconView;
-        public final CheckedTextView mContentView;
+        public final TextView mContentView;
         public Player mItem;
 
         private ViewHolder(View view)
@@ -58,7 +58,7 @@ public class PlayChooserAdapter extends RecyclerView.Adapter<PlayChooserAdapter.
             super(view);
             mView = view;
             mIconView = (ImageView) view.findViewById(R.id.playerAvatar);
-            mContentView = (CheckedTextView) view.findViewById(R.id.Player_name);
+            mContentView = (TextView) view.findViewById(R.id.Player_name);
         }
 
         @Override
