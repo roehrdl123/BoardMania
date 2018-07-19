@@ -109,11 +109,11 @@ public class TicTacToeModel
             playable = false;
             if(player1Beginner)
             {
-                player1sTurn= false;
+                player1sTurn= true;
             }
             else
             {
-                player1sTurn = true;
+                player1sTurn = false;
             }
             player1Beginner = !player1Beginner;
 
@@ -143,7 +143,6 @@ public class TicTacToeModel
     {
         return end;
     }
-
 
     public void setPlayerNames(Bundle bundle)
     {
@@ -176,7 +175,6 @@ public class TicTacToeModel
 
         myHistory.setGame(r.where(Game.class).beginsWith("name","Tic").findFirst());//Game mitgeben
     }
-
 
     public String getPlayer1Name()
     {

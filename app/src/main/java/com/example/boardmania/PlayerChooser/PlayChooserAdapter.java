@@ -25,7 +25,6 @@ public class PlayChooserAdapter extends RecyclerView.Adapter<PlayChooserAdapter.
 {
 
     private final List<Player> mValues;
-    private boolean clickable = true;
     PlayerChooserModel model;
 
     public PlayChooserAdapter(List<Player> players, PlayerChooserModel model)
@@ -77,16 +76,14 @@ public class PlayChooserAdapter extends RecyclerView.Adapter<PlayChooserAdapter.
                 @Override
                 public void onClick(View v)
                 {
-                    if(!clickable)
-                    { return; }
+
 
                     int pos = getAdapterPosition();
                     Player player = mValues.get(pos);
-                    Toast.makeText(v.getContext(), "You clicked " + player.getName(), Toast.LENGTH_SHORT).show();
 
                     Realm r = Realm.getDefaultInstance();
                     r.beginTransaction();
-                    clickable = model.onItemClick(player,v, mValues);
+                    model.onItemClick(player,v, mValues);
                     r.commitTransaction();
                 }
             });

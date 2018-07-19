@@ -27,7 +27,8 @@
         android:button="@drawable/xnl_button_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:clickable="false"/>
 
 
 

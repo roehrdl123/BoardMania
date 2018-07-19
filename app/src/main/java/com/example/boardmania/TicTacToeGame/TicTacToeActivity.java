@@ -98,7 +98,6 @@ public class TicTacToeActivity extends AppCompatActivity
                     model.onClick(position);
                     if(model.getPlayer1Turn())
                     {
-
                         player1Box.setChecked(true);
                         player2Box.setChecked(false);
                     }
@@ -147,6 +146,16 @@ public class TicTacToeActivity extends AppCompatActivity
     public void restart(View view)
     {
         model.restart();
+        if(model.getPlayer1Turn())
+        {
+            player1Box.setChecked(true);
+            player2Box.setChecked(false);
+        }
+        else
+        {
+            player2Box.setChecked(true);
+            player1Box.setChecked(false);
+        }
         adapter.notifyDataSetChanged();
     }
 

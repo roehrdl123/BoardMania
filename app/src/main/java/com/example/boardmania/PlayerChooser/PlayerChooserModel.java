@@ -18,12 +18,12 @@ public class PlayerChooserModel
         this.b = b;
     }
 
-    public boolean onItemClick(Player p,View view, List<Player> mValues)
+    public void onItemClick(Player p,View view, List<Player> mValues)
     {
-        p.setSelected(true);
+        p.setSelected(!p.isSelected());
         int i = 0;
         CheckBox box = (CheckBox) view.findViewById(R.id.Player_CheckBox);
-        box.setChecked(true);
+        box.setChecked(!box.isChecked());
         for (Player player:mValues)
         {
             if(player.isSelected())
@@ -31,11 +31,7 @@ public class PlayerChooserModel
                 i++;
             }
         }
-        if(i == 2)
-        {
-            b.setEnabled(true);
-            return false;
-        }
-        return true;
+
+        b.setEnabled(i==2);
     }
 }
