@@ -27,64 +27,105 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
+        <!--first Player-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/Player1_TextView"
-                android:layout_width="190dp"
+            <ImageView
+                android:id="@+id/player1_Avatar_game"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:gravity="center"/>
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/Player1_PointsView"
-                android:layout_width="190dp"
+                <TextView
+                    android:id="@+id/Player1_Name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    tools:text="NAME1"
+                    android:gravity="center"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/Player1_Wins"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    tools:text="Player1 wins 2"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/Player1_turn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Player1_TextView"/>
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:button="@drawable/xnl_button_checkbox"/>
 
-        </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
 
-        <android.support.constraint.ConstraintLayout
+        </LinearLayout>
+
+        <!--Second Player-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/Player2_TextView"
-                android:layout_width="190dp"
+            <ImageView
+                android:id="@+id/player2_Avatar_game"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                tools:text="hallo"
-                android:gravity="center"
-                />
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/Player2_PointsView"
-                android:layout_width="190dp"
+                <TextView
+                    android:id="@+id/Player2_Name"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    tools:text="NAME2"
+                    android:gravity="center"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/Player2_Wins"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    tools:text="Player2 wins 2"
+                    android:textSize="15dp"/>
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/Player2_turn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Player2_TextView"/>
+                android:clickable="false"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:button="@drawable/xnl_button_checkbox"/>
 
-        </android.support.constraint.ConstraintLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
 
+        </LinearLayout>
+
+        <!--
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -92,7 +133,7 @@
             android:onClick="restart"
             android:layout_gravity="bottom"
             android:padding="5dp"/>
-
+            -->
     </LinearLayout>
 
 

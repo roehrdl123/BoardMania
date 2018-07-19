@@ -16,13 +16,19 @@ public class TicTacToeModel
     private boolean player1sTurn = true;
     private boolean playable = true;
     private boolean player1Beginner = true;
-    private String player1, player2;
+    private String nameP1, nameP2;
+    private Player player1, player2;
     private int player1wins = 0, player2wins = 0;
     private List<String> fields;
     String winner;
     boolean end;
     HistoryEntry myHistory;
     Realm r;
+
+    public TicTacToeModel()
+    {
+        initArray();
+    }
 
     public void initArray()
     {
@@ -58,7 +64,7 @@ public class TicTacToeModel
         }
         else
         {
-            String errorMessage = fields.get(position).equals("X") ? player1 : player2;
+            String errorMessage = fields.get(position).equals("X") ? player1.getName() : player2.getName();
             throw new Exception(errorMessage);
         }
     }
@@ -77,17 +83,17 @@ public class TicTacToeModel
                 || (!fields.get(2).isEmpty() && fields.get(2).equals(fields.get(4)) && fields.get(2).equals(fields.get(6))))
         {
             end = true;
-            winner = player1sTurn ? player1 : player2;
+            winner = player1sTurn ? player1.getName() : player2.getName();
             if(player1sTurn)
             {
 
-                myHistory.setWinner(player1);
+                myHistory.setWinner(player1.getName());
                 player1wins++;
             }
             else
             {
 
-                myHistory.setWinner(player2);
+                myHistory.setWinner(player2.getName());
                 player2wins++;
             }
         }
@@ -132,7 +138,7 @@ public class TicTacToeModel
 
     public String getWinner()
     {
-        return winner;
+        return winner;//in Player umwandeln
     }
 
     public boolean isFinished()
@@ -140,41 +146,40 @@ public class TicTacToeModel
         return end;
     }
 
-    public void setNames(Bundle bundle)
+    public void setPlayer()
     {
-        if (bundle != null)
+        List<Player> players = r.where(Player.class).findAll();
+        for (Player p:players)
         {
-            player1 = bundle.getString("namePlayer1");
-            player2 = bundle.getString("namePlayer2");
-
-
-            int id = r.where(HistoryEntry.class).count() == 0 ? 1 : r.where(HistoryEntry.class).findAll().last().getId()+1;
-            myHistory.setId(id);
-
-            for (Player p:r.where(Player.class).findAll())
+            if (p.getName().equals(nameP1))
             {
-                if(p.getName().equals(player1))
-                {
-                    myHistory.setP1(p);
-                }
-                else if(p.getName().equals(player2))
-                {
-                    myHistory.setP2(p);
-                }
+                player1 = p;
+            }
+            else if (p.getName().equals(nameP2))
+            {
+                player2 = p;
             }
 
-            myHistory.setGame(r.where(Game.class).beginsWith("name","Tic").findFirst());
+            int id = r.where(HistoryEntry.class).count() == 0 ? 1 : r.where(HistoryEntry.class).findAll().last().getId() + 1;
+            myHistory.setId(id);//herausnehmen
+
+            myHistory.setP1(player1);
+
+            myHistory.setP2(player2);
         }
+
+        myHistory.setGame(r.where(Game.class).beginsWith("name","Tic").findFirst());//Game mitgeben
     }
+
 
     public String getPlayer1Name()
     {
-        return player1;
+        return player1.getName();
     }
 
     public String getPlayer2Name()
     {
-        return player2;
+        return player2.getName();
     }
 
     public int getPlayer1wins()
@@ -190,5 +195,29 @@ public class TicTacToeModel
     public boolean isPlayable()
     {
         return playable;
+    }
+
+    public Integer getPlayer1Avatar()
+    {
+        return player1.getAvatarIcon();
+    }
+
+    public Integer getPlayer2Avatar()
+    {
+        return player2.getAvatarIcon();
+    }
+
+    public void setFirstNames(Bundle bundle)
+    {
+        if(bundle != null)
+        {
+            nameP1 = bundle.getString("namePlayer1");
+            nameP2 = bundle.getString("namePlayer2");
+        }
+    }
+
+    public boolean getPlayer1Turn()
+    {
+        return player1sTurn;
     }
 }

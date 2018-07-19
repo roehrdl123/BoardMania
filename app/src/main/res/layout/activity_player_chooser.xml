@@ -26,9 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Start"
-        android:background="#7f0000"
+        android:background="#FF7F50"
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:onClick="start"
-        android:enabled="false"/>
+        android:enabled="true"
+        />
 </LinearLayout>

@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +27,9 @@ public class TicTacToeActivity extends AppCompatActivity
     private Context mContext;
     private Activity mActivity;
     private ArrayAdapter<String> adapter;
-    TextView p1TextView, p2TextView, p1PointView, p2PointView;
+    TextView p1NameView, p1WonView, p2NameView, p2WonView;
     GridView gridview;
+    CheckBox player1Box, player2Box;
 
     String namePlayer1, namePlayer2;
 
@@ -43,15 +46,30 @@ public class TicTacToeActivity extends AppCompatActivity
 
 
         model = new TicTacToeModel();
-        model.initArray();
 
-        model.setNames(bundle);
+        model.setFirstNames(bundle);
+        model.setPlayer();
 
         mContext = getApplicationContext();
         mActivity = TicTacToeActivity.this;
 
         mCLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         gridview = (GridView) findViewById(R.id.gridview);
+        player1Box = (CheckBox)findViewById(R.id.Player1_turn);
+        player2Box = (CheckBox)findViewById(R.id.Player2_turn);
+
+        if(model.getPlayer1Turn())
+        {
+
+            player1Box.setChecked(true);
+            player2Box.setChecked(false);
+        }
+        else
+        {
+            player2Box.setChecked(true);
+            player1Box.setChecked(false);
+        }
+
 
         adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1,model.getArray())
         {
@@ -79,11 +97,24 @@ public class TicTacToeActivity extends AppCompatActivity
                         return;
                     }
                     model.onClick(position);
+                    if(model.getPlayer1Turn())
+                    {
+
+                        player1Box.setChecked(true);
+                        player2Box.setChecked(false);
+                    }
+                    else
+                    {
+                        player2Box.setChecked(true);
+                        player1Box.setChecked(false);
+                    }
                     if(model.isFinished())
                     {
                         String result = model.getWinner().equals("draw") ? model.getWinner() : model.getWinner()+" won";
                         Toast.makeText(TicTacToeActivity.this, result, Toast.LENGTH_SHORT).show();
                         updateTextViews();
+                        player1Box.setChecked(false);
+                        player2Box.setChecked(false);
                     }
                     else
                     {
@@ -99,13 +130,19 @@ public class TicTacToeActivity extends AppCompatActivity
         });
 
 
-        p1TextView = (TextView) findViewById(R.id.Player1_TextView);
-        p2TextView = (TextView) findViewById(R.id.Player2_TextView);
-        p1PointView = (TextView) findViewById(R.id.Player1_PointsView);
-        p2PointView = (TextView) findViewById(R.id.Player2_PointsView);
+        p1NameView = (TextView) findViewById(R.id.Player1_Name);
+        p1NameView.setText(model.getPlayer1Name());
+        p2NameView = (TextView) findViewById(R.id.Player2_Name);
+        p2NameView.setText(model.getPlayer2Name());
+        p1WonView = (TextView) findViewById(R.id.Player1_Wins);
+        p1WonView.setText(model.getPlayer1wins()+" wins");
+        p2WonView = (TextView) findViewById(R.id.Player2_Wins);
+        p2WonView.setText(model.getPlayer2wins()+" wins");
 
-
-        updateTextViews();
+        ImageView imgViewP1 = (ImageView) findViewById(R.id.player1_Avatar_game);
+        imgViewP1.setImageResource(model.getPlayer1Avatar());
+        ImageView imgViewP2 = (ImageView) findViewById(R.id.player2_Avatar_game);
+        imgViewP2.setImageResource(model.getPlayer2Avatar());
     }
 
     public void restart(View view)
@@ -116,10 +153,7 @@ public class TicTacToeActivity extends AppCompatActivity
 
     private void updateTextViews()
     {
-
-        p1TextView.setText(model.getPlayer1Name());
-        p1PointView.setText("Matches won: "+model.getPlayer1wins());
-        p2TextView.setText(model.getPlayer2Name());
-        p2PointView.setText("Matches won: "+model.getPlayer2wins());
+        p1WonView.setText(model.getPlayer1wins()+" wins");
+        p2WonView.setText(model.getPlayer2wins()+" wins");
     }
 }
