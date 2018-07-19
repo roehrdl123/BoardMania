@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.boardmania">
+          package="com.johannesrohr.boardmania">
 
     <application
-        android:name=".BoardGameApp"
+        android:name="at.johannesrohr.boardmania.BoardGameApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="at.johannesrohr.boardmania.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,14 +18,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TicTacToeGame.TicTacToeActivity">
+            android:name="at.johannesrohr.boardmania.TicTacToeGame.TicTacToeActivity">
         </activity>
         <activity
-            android:name=".AddNewPlayer.AddPlayerActivity">
+            android:name="at.johannesrohr.boardmania.AddNewPlayer.AddPlayerActivity">
         </activity>
         <activity
-            android:name=".PlayerChooser.PlayerChooserActivity"
-            android:parentActivityName=".MainActivity">
+            android:name="at.johannesrohr.boardmania.PlayerChooser.PlayerChooserActivity">
         </activity>
     </application>
 
