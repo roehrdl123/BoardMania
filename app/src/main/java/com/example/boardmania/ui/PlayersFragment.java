@@ -1,6 +1,7 @@
 package com.example.boardmania.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,11 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.boardmania.AddNewPlayer.AddPlayerActivity;
 import com.example.boardmania.Data.Player;
 import com.example.boardmania.R;
 import com.example.boardmania.TicTacToeGame.TicTacToeActivity;
 
+import java.util.List;
+
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
+import io.realm.RealmResults;
 
 public class PlayersFragment extends Fragment
 {
@@ -45,7 +51,17 @@ public class PlayersFragment extends Fragment
 
         Realm realm = Realm.getDefaultInstance();
 
-        adapter = new PlayersRecyclerViewAdapter(realm.where(Player.class).findAll());
+        RealmResults<Player> players = realm.where(Player.class).findAll();
+        players.addChangeListener(new RealmChangeListener<RealmResults<Player>>()
+        {
+            @Override
+            public void onChange(RealmResults<Player> players)
+            {
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        adapter = new PlayersRecyclerViewAdapter(players);
         final Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list_player);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -57,10 +73,11 @@ public class PlayersFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(context, "Player add", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(context, AddPlayerActivity.class);
+                context.startActivity(intent);
             }
         });
+        adapter.notifyDataSetChanged();
         return view;
     }
 

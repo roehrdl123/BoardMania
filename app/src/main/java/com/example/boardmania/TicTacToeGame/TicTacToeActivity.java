@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -40,6 +41,7 @@ public class TicTacToeActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -141,6 +143,17 @@ public class TicTacToeActivity extends AppCompatActivity
         imgViewP1.setImageResource(model.getPlayer1Avatar());
         ImageView imgViewP2 = (ImageView) findViewById(R.id.player2_Avatar_game);
         imgViewP2.setImageResource(model.getPlayer2Avatar());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId() == android.R.id.home)
+        {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void restart(View view)

@@ -18,14 +18,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TicTacToeGame.TicTacToeActivity"
-            android:parentActivityName=".MainActivity">
+            android:name=".TicTacToeGame.TicTacToeActivity">
+        </activity>
+        <activity
+            android:name=".AddNewPlayer.AddPlayerActivity">
         </activity>
         <activity
             android:name=".PlayerChooser.PlayerChooserActivity"
             android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".AddNewPlayer.AddPlayerActivity">
         </activity>
     </application>
 

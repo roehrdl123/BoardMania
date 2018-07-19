@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class PlayerChooserActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_chooser);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         gameBundle = getIntent().getExtras();
 
@@ -41,6 +43,17 @@ public class PlayerChooserActivity extends AppCompatActivity
         PlayerChooserModel model = new PlayerChooserModel((Button)findViewById(R.id.button_Start));
         PlayChooserAdapter adapter = new PlayChooserAdapter(player,model);
         recView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId() == android.R.id.home)
+        {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void start(View view)
