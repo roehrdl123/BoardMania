@@ -10,8 +10,6 @@ import io.realm.annotations.PrimaryKey;
 
 public class HistoryEntry extends RealmObject
 {
-    @PrimaryKey
-    private int id;
     private Game game;
     private Date date;
     private Player p1, p2;
@@ -98,15 +96,5 @@ public class HistoryEntry extends RealmObject
     public void setGame(Game game)
     {
         this.game = game;
-    }
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
     }
 }

@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import io.realm.Realm;
 
 public class PlayerChooserActivity extends AppCompatActivity
 {
-    private RecyclerView Lview;
+    private RecyclerView recView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,22 +32,36 @@ public class PlayerChooserActivity extends AppCompatActivity
 
         List<Player> player = realm.where(Player.class).findAll();
 
-        Lview = (RecyclerView) findViewById(R.id.listPlayerChooser);
-        PlayChooserAdapter adapter = new PlayChooserAdapter(player);
-        Lview.setAdapter(adapter);
-    }
-
-
-    public void selectPlayer(View view)
-    {
-        Toast.makeText(PlayerChooserActivity.this, "You Clicked", Toast.LENGTH_SHORT).show();
+        recView = (RecyclerView) findViewById(R.id.listPlayerChooser);
+        PlayerChooserModel model = new PlayerChooserModel((Button)findViewById(R.id.button_Start));
+        PlayChooserAdapter adapter = new PlayChooserAdapter(player,model);
+        recView.setAdapter(adapter);
     }
 
     public void start(View view)
     {
         Intent intent = new Intent(this, TicTacToeActivity.class);
-        intent.putExtra("namePlayer1", "Hans");
-        intent.putExtra("namePlayer2", "Matilde");
+        Player player1 = null;
+        Player player2 = null;
+
+        Realm r = Realm.getDefaultInstance();
+        for (Player p: r.where(Player.class).findAll())
+        {
+            if(p.isSelected())
+            {
+                if(player1 == null)
+                {
+                    player1 = p;
+                }
+                else
+                {
+                    player2 = p;
+                }
+            }
+        }
+
+        intent.putExtra("Player1", ""+player1.getName());
+        intent.putExtra("Player2", ""+player2.getName());
         startActivity(intent);
 
     }

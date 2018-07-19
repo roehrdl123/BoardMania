@@ -23,6 +23,7 @@
         tools:listitem="@layout/rowview"/>
 
     <Button
+        android:id="@+id/button_Start"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Start"
@@ -30,6 +31,5 @@
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:onClick="start"
-        android:enabled="true"
-        />
+        android:enabled="false"/>
 </LinearLayout>

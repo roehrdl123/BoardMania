@@ -125,7 +125,7 @@
 
         </LinearLayout>
 
-        <!--
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -133,7 +133,7 @@
             android:onClick="restart"
             android:layout_gravity="bottom"
             android:padding="5dp"/>
-            -->
+
     </LinearLayout>
 
 

@@ -132,8 +132,6 @@ public class TicTacToeModel
         {
             fields.set(i,"");
         }
-        int id = r.where(HistoryEntry.class).count() == 0 ? 1 : r.where(HistoryEntry.class).findAll().last().getId()+1;
-        myHistory.setId(id);
     }
 
     public String getWinner()
@@ -146,7 +144,18 @@ public class TicTacToeModel
         return end;
     }
 
-    public void setPlayer()
+
+    public void setPlayerNames(Bundle bundle)
+    {
+        if(bundle != null)
+        {
+            nameP1 = bundle.getString("Player1");
+            nameP2 = bundle.getString("Player2");
+            setPlayer();
+        }
+    }
+
+    private void setPlayer()
     {
         List<Player> players = r.where(Player.class).findAll();
         for (Player p:players)
@@ -159,9 +168,6 @@ public class TicTacToeModel
             {
                 player2 = p;
             }
-
-            int id = r.where(HistoryEntry.class).count() == 0 ? 1 : r.where(HistoryEntry.class).findAll().last().getId() + 1;
-            myHistory.setId(id);//herausnehmen
 
             myHistory.setP1(player1);
 
@@ -205,15 +211,6 @@ public class TicTacToeModel
     public Integer getPlayer2Avatar()
     {
         return player2.getAvatarIcon();
-    }
-
-    public void setFirstNames(Bundle bundle)
-    {
-        if(bundle != null)
-        {
-            nameP1 = bundle.getString("namePlayer1");
-            nameP2 = bundle.getString("namePlayer2");
-        }
     }
 
     public boolean getPlayer1Turn()

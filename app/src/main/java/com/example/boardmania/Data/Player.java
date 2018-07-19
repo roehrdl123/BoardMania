@@ -10,6 +10,8 @@ public class Player extends RealmObject
 {
     @PrimaryKey
     private String name;
+    private boolean selected = false;
+
 
     private Integer avatarIcon;
     private boolean type;
@@ -44,4 +46,13 @@ public class Player extends RealmObject
         this.type = type;
     }
 
+    public boolean isSelected()
+    {
+        return selected;
+    }
+
+    public void setSelected(boolean selected)
+    {
+        this.selected = selected;
+    }
 }
