@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "854757802007",
+    "firebase_url": "https://boardmania-e453e.firebaseio.com",
+    "project_id": "boardmania-e453e",
+    "storage_bucket": "boardmania-e453e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854757802007:android:9c799514cd964f80",
+        "android_client_info": {
+          "package_name": "com.example.boardmania"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854757802007-bocfb3ouer8r512orkn6juq53g29avt6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC95e5RhdHyZBvvREYljYBkWIKTthfbAKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

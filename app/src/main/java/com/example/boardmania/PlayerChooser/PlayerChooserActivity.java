@@ -24,6 +24,7 @@ public class PlayerChooserActivity extends AppCompatActivity
 {
     private RecyclerView recView;
     private Bundle gameBundle;
+    private List<Player> player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,7 +38,7 @@ public class PlayerChooserActivity extends AppCompatActivity
 
         Realm realm = Realm.getDefaultInstance();
 
-        List<Player> player = realm.where(Player.class).findAll();
+        player = realm.where(Player.class).findAll();
 
         recView = (RecyclerView) findViewById(R.id.listPlayerChooser);
         PlayerChooserModel model = new PlayerChooserModel((Button)findViewById(R.id.button_Start));
@@ -50,6 +51,14 @@ public class PlayerChooserActivity extends AppCompatActivity
     {
         if(item.getItemId() == android.R.id.home)
         {
+            Realm r = Realm.getDefaultInstance();
+            r.beginTransaction();
+            for(Player play:player)
+            {
+                play.setSelected(false);
+            }
+            r.commitTransaction();
+
             finish();
             return true;
         }
