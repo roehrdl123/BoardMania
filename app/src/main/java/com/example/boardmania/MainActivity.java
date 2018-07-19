@@ -102,11 +102,4 @@ public class MainActivity extends AppCompatActivity
     {
         getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, fragment).commit();
     }
-
-
-    public void onClick(View view)
-    {
-        Intent intent = new Intent(this, PlayerChooserActivity.class);
-        startActivity(intent);
-    }
 }

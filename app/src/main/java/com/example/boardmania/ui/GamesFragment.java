@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.example.boardmania.Data.Game;
+import com.example.boardmania.PlayerChooser.PlayerChooserActivity;
 import com.example.boardmania.R;
+import com.example.boardmania.TicTacToeGame.TicTacToeActivity;
 
 import io.realm.Realm;
 
@@ -55,7 +57,10 @@ public class GamesFragment extends Fragment
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(adapter);
         }
+
+
         return view;
     }
+
 
 }

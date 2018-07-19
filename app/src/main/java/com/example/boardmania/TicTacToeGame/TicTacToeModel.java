@@ -16,8 +16,9 @@ public class TicTacToeModel
     private boolean player1sTurn = true;
     private boolean playable = true;
     private boolean player1Beginner = true;
-    private String nameP1, nameP2;
+    private String nameP1, nameP2, gameName;
     private Player player1, player2;
+    private Game game;
     private int player1wins = 0, player2wins = 0;
     private List<String> fields;
     String winner;
@@ -30,8 +31,7 @@ public class TicTacToeModel
         initArray();
     }
 
-    public void initArray()
-    {
+    public void initArray() {
         fields = new ArrayList<>();
         for (int i = 0; i < 9; i++)
         {
@@ -47,8 +47,7 @@ public class TicTacToeModel
         return fields;
     }
 
-    public void onClick(int position) throws Exception
-    {
+    public void onClick(int position) throws Exception {
         if (!playable)
         {
             return;
@@ -69,8 +68,7 @@ public class TicTacToeModel
         }
     }
 
-    public void checkIfWon(int position)
-    {
+    public void checkIfWon(int position) {
         end = false;
 
         if((!fields.get(0).isEmpty() && fields.get(0).equals(fields.get(4)) && fields.get(0).equals(fields.get(8)))
@@ -125,8 +123,7 @@ public class TicTacToeModel
 
     }
 
-    public void restart()
-    {
+    public void restart() {
         playable = true;
         for(int i = 0; i < fields.size(); i++)
         {
@@ -144,18 +141,18 @@ public class TicTacToeModel
         return end;
     }
 
-    public void setPlayerNames(Bundle bundle)
-    {
+    public void setBundle(Bundle bundle) {
         if(bundle != null)
         {
             nameP1 = bundle.getString("Player1");
             nameP2 = bundle.getString("Player2");
+            Bundle gameBundle = bundle.getBundle("Game");
+            gameName =  gameBundle.getString("Game");
             setPlayer();
         }
     }
 
-    private void setPlayer()
-    {
+    private void setPlayer() {
         List<Player> players = r.where(Player.class).findAll();
         for (Player p:players)
         {
@@ -167,13 +164,21 @@ public class TicTacToeModel
             {
                 player2 = p;
             }
-
-            myHistory.setP1(player1);
-
-            myHistory.setP2(player2);
         }
+        myHistory.setP1(player1);
 
-        myHistory.setGame(r.where(Game.class).beginsWith("name","Tic").findFirst());//Game mitgeben
+        myHistory.setP2(player2);
+
+
+        List<Game> games = r.where(Game.class).findAll();
+        for (Game g:games)
+        {
+            if(g.getName().equals(gameName))
+            {
+                game = g;
+            }
+        }
+        myHistory.setGame(game);
     }
 
     public String getPlayer1Name()

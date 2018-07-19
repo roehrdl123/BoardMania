@@ -47,7 +47,7 @@ public class TicTacToeActivity extends AppCompatActivity
 
         model = new TicTacToeModel();
 
-        model.setPlayerNames(bundle);
+        model.setBundle(bundle);
 
         mContext = getApplicationContext();
         mActivity = TicTacToeActivity.this;

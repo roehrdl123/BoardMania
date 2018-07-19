@@ -22,12 +22,17 @@ import io.realm.Realm;
 public class PlayerChooserActivity extends AppCompatActivity
 {
     private RecyclerView recView;
+    private Bundle gameBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_chooser);
+
+        gameBundle = getIntent().getExtras();
+
+
         Realm realm = Realm.getDefaultInstance();
 
         List<Player> player = realm.where(Player.class).findAll();
@@ -62,6 +67,7 @@ public class PlayerChooserActivity extends AppCompatActivity
 
         intent.putExtra("Player1", ""+player1.getName());
         intent.putExtra("Player2", ""+player2.getName());
+        intent.putExtra("Game",gameBundle);
         startActivity(intent);
 
     }

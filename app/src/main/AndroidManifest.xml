@@ -25,6 +25,8 @@
             android:name=".PlayerChooser.PlayerChooserActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity android:name=".AddNewPlayer.AddPlayerActivity">
+        </activity>
     </application>
 
 </manifest>

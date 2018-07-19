@@ -1,5 +1,7 @@
 package com.example.boardmania.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.boardmania.Data.Game;
+import com.example.boardmania.Data.Player;
+import com.example.boardmania.PlayerChooser.PlayerChooserActivity;
 import com.example.boardmania.R;
 
 import java.util.List;
+
+import io.realm.Realm;
 
 
 public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecyclerViewAdapter.ViewHolder>
@@ -57,6 +63,24 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
             mView = view;
             mIconView = (ImageView) view.findViewById(R.id.icon_List_Games);
             mContentView = (TextView) view.findViewById(R.id.Game_name);
+
+            mView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Context context = v.getContext();
+                    int pos = getAdapterPosition();
+                    Game game = mValues.get(pos);
+                    if(game.getName().equals("TicTacToe"))
+                    {
+                        Intent intent = new Intent(context, PlayerChooserActivity.class);
+                        intent.putExtra("Game", game.getName());
+                        context.startActivity(intent);
+                    }
+
+                }
+            });
         }
 
         @Override
@@ -66,4 +90,6 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
         }
 
     }
+
+
 }
