@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         Game gametype = new Game();
         gametype.setIcon(R.drawable.tictactoeicon);
-        gametype.setName("TicTacToe");
+        gametype.setName("Tic Tac Toe");
         realm.copyToRealmOrUpdate(gametype);
 
         Game g = new Game();

@@ -113,10 +113,6 @@ public class TicTacToeActivity extends AppCompatActivity
                         player1Box.setChecked(false);
                         player2Box.setChecked(false);
                     }
-                    else
-                    {
-                        Toast.makeText(TicTacToeActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                    }
                     adapter.notifyDataSetChanged();
                 }
                 catch(Exception e)
@@ -138,7 +134,7 @@ public class TicTacToeActivity extends AppCompatActivity
         totalGames = (TextView) findViewById(R.id.totalGamesPlayed);
         totalGames.setText(model.getGamesPlayed()+" Games");
         draws = (TextView) findViewById(R.id.totalDraws);
-        totalGames.setText(model.getDraws()+" draws");
+        draws.setText(model.getDraws()+" draws");
 
         ImageView imgViewP1 = (ImageView) findViewById(R.id.player1_Avatar_game);
         imgViewP1.setImageResource(model.getPlayer1Avatar());
@@ -177,7 +173,7 @@ public class TicTacToeActivity extends AppCompatActivity
     {
         p1WonView.setText(model.getPlayer1wins()+" wins");
         p2WonView.setText(model.getPlayer2wins()+" wins");
-        totalGames.setText(model.getDraws()+" draws");
+        draws.setText(model.getDraws()+" draws");
         totalGames.setText(model.getGamesPlayed()+" Games");
     }
 }

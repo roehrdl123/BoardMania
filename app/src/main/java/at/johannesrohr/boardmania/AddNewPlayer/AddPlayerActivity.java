@@ -41,7 +41,7 @@ public class AddPlayerActivity extends AppCompatActivity
 
     public void addPlayer(View view)
     {
-        EditText text = (EditText) view.findViewById(R.id.name_Player_add);
+        EditText text = (EditText) findViewById(R.id.name_Player_add);
         if(text.getText().toString().equals(""))
         {
             Toast.makeText(AddPlayerActivity.this,"No Name!",Toast.LENGTH_SHORT).show();

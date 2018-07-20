@@ -69,7 +69,7 @@ public class GamesRecyclerViewAdapter extends RecyclerView.Adapter<GamesRecycler
                     Context context = v.getContext();
                     int pos = getAdapterPosition();
                     Game game = mValues.get(pos);
-                    if(game.getName().equals("TicTacToe"))
+                    if(game.getName().equals("Tic Tac Toe"))
                     {
                         Intent intent = new Intent(context, PlayerChooserActivity.class);
                         intent.putExtra("Game", game.getName());

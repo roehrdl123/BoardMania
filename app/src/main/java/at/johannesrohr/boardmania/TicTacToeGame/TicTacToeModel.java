@@ -7,6 +7,8 @@ import at.johannesrohr.boardmania.Data.HistoryEntry;
 import at.johannesrohr.boardmania.Data.Player;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.realm.Realm;
@@ -105,6 +107,7 @@ public class TicTacToeModel
             end = true;
             myHistory.setWinner("draw");
             draws++;
+            gamesPlayed++;
         }
         if(end)
         {
@@ -119,6 +122,9 @@ public class TicTacToeModel
             }
             player1Beginner = !player1Beginner;
 
+
+            Date currentTime = Calendar.getInstance().getTime();
+            myHistory.setTime(currentTime);
 
             r.beginTransaction();
             r.copyToRealm(myHistory);

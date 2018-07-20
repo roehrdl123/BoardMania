@@ -36,6 +36,15 @@ public class PlayerChooserActivity extends AppCompatActivity
 
         player = realm.where(Player.class).findAll();
 
+        realm.beginTransaction();
+
+        for(Player p: player)
+        {
+            p.setSelected(false);
+        }
+
+        realm.commitTransaction();
+
         recView = (RecyclerView) findViewById(R.id.listPlayerChooser);
         PlayerChooserModel model = new PlayerChooserModel((Button)findViewById(R.id.button_Start));
         PlayChooserAdapter adapter = new PlayChooserAdapter(player,model);

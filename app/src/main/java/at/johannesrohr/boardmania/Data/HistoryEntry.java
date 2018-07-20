@@ -1,5 +1,6 @@
 package at.johannesrohr.boardmania.Data;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -10,10 +11,9 @@ public class HistoryEntry extends RealmObject
 {
     private Game game;
     private Date date;
+    private Date time;
     private Player p1, p2;
     private String winner;
-    private boolean draw;
-    private boolean finished;
     private RealmList<Turn> turns;
 
     public Player getP1()
@@ -56,26 +56,6 @@ public class HistoryEntry extends RealmObject
         this.winner = winner;
     }
 
-    public boolean isDraw()
-    {
-        return draw;
-    }
-
-    public void setDraw(boolean draw)
-    {
-        this.draw = draw;
-    }
-
-    public boolean isFinished()
-    {
-        return finished;
-    }
-
-    public void setFinished(boolean finished)
-    {
-        this.finished = finished;
-    }
-
     public List<Turn> getTurns()
     {
         return turns;
@@ -94,5 +74,15 @@ public class HistoryEntry extends RealmObject
     public void setGame(Game game)
     {
         this.game = game;
+    }
+
+    public Date getTime()
+    {
+        return time;
+    }
+
+    public void setTime(Date time)
+    {
+        this.time = time;
     }
 }
