@@ -1,5 +1,6 @@
 package at.johannesrohr.boardmania.AddNewPlayer;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,6 +18,9 @@ import io.realm.Realm;
 
 public class AddPlayerActivity extends AppCompatActivity
 {
+    Integer selectedAvatar;
+    Integer resource1, resource2, resource3, resource4;
+    ImageView view1, view2, view3, view4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -25,7 +29,15 @@ public class AddPlayerActivity extends AppCompatActivity
         setContentView(R.layout.activity_add_player);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ((ImageView)findViewById(R.id.avatar_Player_add)).setImageResource(R.drawable.avatarteacher);
+        resource1 = R.drawable.avatarteacher;
+        resource2 = R.drawable.avatarboy;
+        resource3 = R.drawable.avatarbusinessman;
+        resource4 = R.drawable.avatarcoder;
+
+        (view1 = (ImageView)findViewById(R.id.avatar_Player_add1)).setImageResource(resource1);
+        (view2 = (ImageView)findViewById(R.id.avatar_Player_add2)).setImageResource(resource2);
+        (view3 = (ImageView)findViewById(R.id.avatar_Player_add3)).setImageResource(resource3);
+        (view4 = (ImageView)findViewById(R.id.avatar_Player_add4)).setImageResource(resource4);
     }
 
     @Override
@@ -48,6 +60,12 @@ public class AddPlayerActivity extends AppCompatActivity
             return;
         }
 
+        if(selectedAvatar == null)
+        {
+            Toast.makeText(AddPlayerActivity.this, "No Avatar!", Toast.LENGTH_SHORT);
+            return;
+        }
+
        Realm r = Realm.getDefaultInstance();
        List<Player> players = r.where(Player.class).findAll();
 
@@ -63,12 +81,37 @@ public class AddPlayerActivity extends AppCompatActivity
        r.beginTransaction();
        Player player = new Player();
        player.setName(text.getText().toString());
-       player.setAvatarIcon(R.drawable.avatarteacher);
+       player.setAvatarIcon(selectedAvatar);
 
        r.copyToRealmOrUpdate(player);
 
        r.commitTransaction();
 
        finish();
+    }
+
+    public void selectAvatar(View view)
+    {
+        Integer i = view.getId();
+        view1.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        view2.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        view3.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        view4.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        switch(i)
+        {
+            case R.id.avatar_Player_add1: view1.setBackgroundColor(Color.parseColor("#0000ff"));
+                                          selectedAvatar = resource1;
+                                          break;
+            case R.id.avatar_Player_add2: view2.setBackgroundColor(Color.parseColor("#0000ff"));
+                                          selectedAvatar = resource2;
+                                          break;
+            case R.id.avatar_Player_add3: view3.setBackgroundColor(Color.parseColor("#0000ff"));
+                                          selectedAvatar = resource3;
+                                          break;
+            case R.id.avatar_Player_add4: view4.setBackgroundColor(Color.parseColor("#0000ff"));
+                                          selectedAvatar = resource4;
+                                          break;
+
+        }
     }
 }

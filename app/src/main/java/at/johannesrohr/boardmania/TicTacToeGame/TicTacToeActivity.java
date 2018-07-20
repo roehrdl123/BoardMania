@@ -1,7 +1,9 @@
 package at.johannesrohr.boardmania.TicTacToeGame;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -88,37 +90,7 @@ public class TicTacToeActivity extends AppCompatActivity
         {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id)
             {
-                try
-                {
-                    if(!model.isPlayable())
-                    {
-                        return;
-                    }
-                    model.onClick(position);
-                    if(model.getPlayer1Turn())
-                    {
-                        player1Box.setChecked(true);
-                        player2Box.setChecked(false);
-                    }
-                    else
-                    {
-                        player2Box.setChecked(true);
-                        player1Box.setChecked(false);
-                    }
-                    if(model.isFinished())
-                    {
-                        String result = model.getWinner().equals("draw") ? model.getWinner() : model.getWinner()+" won";
-                        Toast.makeText(TicTacToeActivity.this, result, Toast.LENGTH_SHORT).show();
-                        updateTextViews();
-                        player1Box.setChecked(false);
-                        player2Box.setChecked(false);
-                    }
-                    adapter.notifyDataSetChanged();
-                }
-                catch(Exception e)
-                {
-                    Toast.makeText(TicTacToeActivity.this, "This field is already taken by " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+                ItemClick(parent,v,position,id);
             }
         });
 
@@ -175,5 +147,40 @@ public class TicTacToeActivity extends AppCompatActivity
         p2WonView.setText(model.getPlayer2wins()+" wins");
         draws.setText(model.getDraws()+" draws");
         totalGames.setText(model.getGamesPlayed()+" Games");
+    }
+
+    public void ItemClick(AdapterView<?> parent, View v, int position, long id)
+    {
+        try
+        {
+            if(!model.isPlayable())
+            {
+                return;
+            }
+            model.onClick(position);
+            if(model.getPlayer1Turn())
+            {
+                player1Box.setChecked(true);
+                player2Box.setChecked(false);
+            }
+            else
+            {
+                player2Box.setChecked(true);
+                player1Box.setChecked(false);
+            }
+            if(model.isFinished())
+            {
+                String result = model.getWinner().equals("draw") ? model.getWinner() : model.getWinner()+" won";
+                Toast.makeText(TicTacToeActivity.this, result, Toast.LENGTH_SHORT).show();
+                updateTextViews();
+                player1Box.setChecked(false);
+                player2Box.setChecked(false);
+            }
+            adapter.notifyDataSetChanged();
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(TicTacToeActivity.this, "This field is already taken by " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }
