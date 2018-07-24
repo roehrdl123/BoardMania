@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+              android:layout_height="@dimen/recycler_section_header_height"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical">
+
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/list_item_section_text"
+              android:layout_width="match_parent"
+              android:layout_height="18dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              android:textSize="15dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height= "2dp"
+        android:background="#D3D3D3" />
+</LinearLayout>

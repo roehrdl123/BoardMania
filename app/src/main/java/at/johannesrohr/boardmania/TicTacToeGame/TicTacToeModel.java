@@ -23,7 +23,7 @@ public class TicTacToeModel
     private Game game;
     private int player1wins = 0, player2wins = 0;
     private List<String> fields;
-    private String winner;
+    private Player winner;
     private boolean end;
     private HistoryEntry myHistory;
     private Realm r;
@@ -85,17 +85,17 @@ public class TicTacToeModel
                 || (!fields.get(2).isEmpty() && fields.get(2).equals(fields.get(4)) && fields.get(2).equals(fields.get(6))))
         {
             end = true;
-            winner = player1sTurn ? player1.getName() : player2.getName();
+            winner = player1sTurn ? player1 : player2;
             if(player1sTurn)
             {
 
-                myHistory.setWinner(player1.getName());
+                myHistory.setWinner(player1);
                 player1wins++;
             }
             else
             {
 
-                myHistory.setWinner(player2.getName());
+                myHistory.setWinner(player2);
                 player2wins++;
             }
             gamesPlayed++;
@@ -103,10 +103,10 @@ public class TicTacToeModel
 
         else if(!fields.contains(""))
         {
-            winner = "draw";
             end = true;
-            myHistory.setWinner("draw");
             draws++;
+            winner = null;
+            myHistory.setWinner(null);
             gamesPlayed++;
         }
         if(end)
@@ -151,9 +151,9 @@ public class TicTacToeModel
         }
     }
 
-    public String getWinner()
+    public Player getWinner()
     {
-        return winner;//in Player umwandeln
+        return winner;
     }
 
     public boolean isFinished()

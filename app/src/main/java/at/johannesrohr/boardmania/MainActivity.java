@@ -9,7 +9,11 @@ import android.view.MenuItem;
 
 import com.johannesrohr.boardmania.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import at.johannesrohr.boardmania.Data.Game;
+import at.johannesrohr.boardmania.Data.HistoryEntry;
 import at.johannesrohr.boardmania.Data.Player;
 import at.johannesrohr.boardmania.ui.GamesFragment;
 import at.johannesrohr.boardmania.ui.HistoryFragment;
@@ -68,6 +72,8 @@ public class MainActivity extends AppCompatActivity
         p4.setAvatarIcon(R.drawable.avatarteacher);
 
         realm.copyToRealmOrUpdate(p4);
+
+
 
         realm.commitTransaction();
 

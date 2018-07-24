@@ -24,11 +24,8 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
     public HistoryRecyclerViewAdapter(List<HistoryEntry> items)
     {
-        mValues = new ArrayList<>();
-        for (HistoryEntry h: items)
-        {
-            mValues.add(0,h);
-        }
+        mValues = items;
+
     }
 
     @Override
@@ -52,7 +49,7 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         holder.mPlayer2.setText(mValues.get(position).getP2().getName());
         holder.mTime.setText(timeText);
 
-        String winner = mValues.get(position).getWinner();
+        String winner = mValues.get(position).getWinner() == null ? "draw" : mValues.get(position).getWinner().getName();
         String p1Name = mValues.get(position).getP1().getName();
         String p2Name = mValues.get(position).getP2().getName();
 

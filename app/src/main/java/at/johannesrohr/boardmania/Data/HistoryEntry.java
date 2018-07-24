@@ -1,5 +1,7 @@
 package at.johannesrohr.boardmania.Data;
 
+import android.support.annotation.NonNull;
+
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
@@ -7,13 +9,12 @@ import java.util.List;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
-public class HistoryEntry extends RealmObject
+public class HistoryEntry extends RealmObject implements Comparable<HistoryEntry>
 {
     private Game game;
-    private Date date;
     private Date time;
     private Player p1, p2;
-    private String winner;
+    private Player winner;
     private RealmList<Turn> turns;
 
     public Player getP1()
@@ -36,22 +37,12 @@ public class HistoryEntry extends RealmObject
         this.p2 = p2;
     }
 
-    public Date getDate()
-    {
-        return date;
-    }
-
-    public void setDate(Date date)
-    {
-        this.date = date;
-    }
-
-    public String getWinner()
+    public Player getWinner()
     {
         return winner;
     }
 
-    public void setWinner(String winner)
+    public void setWinner(Player winner)
     {
         this.winner = winner;
     }
@@ -84,5 +75,11 @@ public class HistoryEntry extends RealmObject
     public void setTime(Date time)
     {
         this.time = time;
+    }
+
+    @Override
+    public int compareTo(@NonNull HistoryEntry historyEntry)
+    {
+        return this.getTime().compareTo(historyEntry.getTime()) * (-1);
     }
 }

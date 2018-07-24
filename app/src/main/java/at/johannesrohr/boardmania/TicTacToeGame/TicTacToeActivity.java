@@ -168,14 +168,16 @@ public class TicTacToeActivity extends AppCompatActivity
                 player2Box.setChecked(true);
                 player1Box.setChecked(false);
             }
+
             if(model.isFinished())
             {
-                String result = model.getWinner().equals("draw") ? model.getWinner() : model.getWinner()+" won";
+                String result = model.getWinner() == null ? "draw" : model.getWinner().getName()+" won";
                 Toast.makeText(TicTacToeActivity.this, result, Toast.LENGTH_SHORT).show();
                 updateTextViews();
                 player1Box.setChecked(false);
                 player2Box.setChecked(false);
             }
+
             adapter.notifyDataSetChanged();
         }
         catch(Exception e)

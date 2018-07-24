@@ -101,7 +101,7 @@ public class AddPlayerActivity extends AppCompatActivity
         {
             case R.id.avatar_Player_add1: view1.setBackgroundColor(Color.parseColor("#0000ff"));
                                           selectedAvatar = resource1;
-                                          break;
+                                         break;
             case R.id.avatar_Player_add2: view2.setBackgroundColor(Color.parseColor("#0000ff"));
                                           selectedAvatar = resource2;
                                           break;
@@ -111,7 +111,7 @@ public class AddPlayerActivity extends AppCompatActivity
             case R.id.avatar_Player_add4: view4.setBackgroundColor(Color.parseColor("#0000ff"));
                                           selectedAvatar = resource4;
                                           break;
-
-        }
+            default: break;
+       }
     }
 }
