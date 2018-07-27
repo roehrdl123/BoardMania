@@ -4,7 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
-              android:layout_marginBottom="10dp">
+              android:layout_marginBottom="15dp"
+              android:layout_marginLeft="5dp">
     <ImageView
         android:id="@+id/Game_icon_history"
         android:layout_width="40dp"
